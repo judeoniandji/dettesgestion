@@ -1,0 +1,28 @@
+{# templates/dette/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des Dettes</h1>
+
+    <form method="get">
+        {% for statut in statuts %}
+            <label>
+                <input type="checkbox" name="statuts[]" value="{{ statut }}" {% if statut in app.request.query.get('statuts', []) %}checked{% endif %}>
+                {{ statut|capitalize }}
+            </label>
+        {% endfor %}
+        <button type="submit">Filtrer</button>
+    </form>
+
+    <ul>
+        {% for dette in dettes %}
+            <li>{{ dette.id }} - {{ dette.statut }} - {{ dette.montant }} FCFA</li>
+        {% endfor %}
+    </ul>
+
+    {% if dettes is empty %}
+        <p>Aucune dette trouvée.</p>
+    {% endif %}
+
+    <a href="{{ path('dettes_create') }}">Créer une nouvelle dette</a>
+{% endblock %}

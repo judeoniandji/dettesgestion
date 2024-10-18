@@ -1,0 +1,13 @@
+{# templates/dette/create.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Créer une Nouvelle Dette</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit">Créer</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('dettes_index') }}">Retour à la liste des dettes</a>
+{% endblock %}
